@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Sensor ID: <input type='text' id='sensor_id' /> <button onclick='getSensorData()'>Get</button>
+        <div id='data'></div>
+
+        <script>
+            function getSensorData() {
+                // Get user input
+                sid = document.getElementById('sensor_id').value
+                fetch('http://127.0.0.1:8000/api/sensor/' + sid)
+                    .then(response => response.json())
+                    .then(data => displayData(data))
+            }
+
+            function displayData(data) {
+                let html = "<ul>"
+                for(let i = 0; i < data['data'].length; i++) {
+                    html += "<li>" + data['data'][i]['datetime_added'] + " <b>" + data['data'][i]['value'] + "</b></li>"
+                }
+                html += "</ul>"
+                document.getElementById('data').innerHTML = html
+            }
+        </script>
+
+</body>
+</html>

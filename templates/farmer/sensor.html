@@ -1,0 +1,13 @@
+<html>
+    <body>
+        <h1>Sensor: {{ sid }}</h1>
+        <table>
+            {% for row in data %}
+                <tr>
+                    <td>{{ row.datetime_added }}</td>
+                    <td><b>{{ row.value }}</b></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
